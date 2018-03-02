@@ -9,17 +9,19 @@
 import UIKit
 
 class ViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    var white = true
+    
+    @IBOutlet weak var button1: UIButton!
+    
+    @IBAction func flipCard(_ sender: Any) {
+        if white {
+            button1.backgroundColor = UIColor.blue
+            white = false
+        } else {
+            button1.backgroundColor = UIColor.white
+            white = true
+        }
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-
+    
 }
 
