@@ -9,6 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
+    var game = Concentration(numberOfPairsOfCards: (cardButtons.count + 1)/ 2)
     
     var flipCount = 0 {
         // runs everytime flipCount changes
