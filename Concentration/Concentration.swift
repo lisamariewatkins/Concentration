@@ -16,7 +16,7 @@ class Concentration {
             let card = Card()
             cards += [card, card]
         }
-        // TODO shuffle cards
+        // TODO shuffle cards 
     }
     
     func chooseCard(at index: Int) {
