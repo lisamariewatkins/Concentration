@@ -20,7 +20,7 @@ struct Card {
     static func getUniqueIdentifier() -> Int {
         // can access static vars inside static methods
         identifierFactory += 1
-        return Card.identifierFactory
+        return identifierFactory
     }
     
     init() {
