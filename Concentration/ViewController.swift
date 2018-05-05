@@ -10,29 +10,29 @@ import UIKit
 
 class ViewController: UIViewController {
     // won't initialize til something tries to use game (lazy)
-    lazy var game: Concentration =
+    private lazy var game: Concentration =
         Concentration(numberOfPairsOfCards: numberofPairsOfCards)
     
     var numberofPairsOfCards: Int {
         return (cardButtons.count) / 2
     }
     
-    var flipCount = 0 {
+    private(set) var flipCount = 0 {
         // runs everytime flipCount changes
         didSet {
             flipCountLabel.text = "Flips: \(flipCount)"
         }
     }
     
-    var emojiChoices = ["👻", "🎃", "🤠", "😻", "👽", "☠️", "🐳", "🐣"]
+    private var emojiChoices = ["👻", "🎃", "🤠", "😻", "👽", "☠️", "🐳", "🐣"]
     
-    var emoji = [Int:String]()
+    private var emoji = [Int:String]()
     
-    @IBOutlet var cardButtons: [UIButton]!
+    @IBOutlet private var cardButtons: [UIButton]!
 
-    @IBOutlet weak var flipCountLabel: UILabel!
+    @IBOutlet private weak var flipCountLabel: UILabel!
     
-    @IBAction func touchCard(_ sender: UIButton) {
+    @IBAction private func touchCard(_ sender: UIButton) {
         flipCount += 1
         // if optional is in set state...
         if let cardNumber = cardButtons.index(of: sender) {
@@ -43,7 +43,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func updateViewFromModel() {
+    private func updateViewFromModel() {
         for index in cardButtons.indices {
             let button = cardButtons[index]
             let card = game.cards[index]
@@ -57,7 +57,7 @@ class ViewController: UIViewController {
         }
     }
     
-    func emoji(for card: Card) -> String {
+    private func emoji(for card: Card) -> String {
         if emoji[card.identifier] == nil, emojiChoices.count > 0 {
             let randomIndex = Int(arc4random_uniform(UInt32(emojiChoices.count)))
             emoji[card.identifier] = emojiChoices.remove(at: randomIndex)
