@@ -10,10 +10,18 @@ import Foundation
 
 // no inheritence, value type
 // when you set a var equal to a struct, it copies it
-struct Card {
+struct Card: Hashable {
+    var hashValue: Int {
+        return identifier
+    }
+    
+    static func ==(lhs: Card, rhs: Card) -> Bool {
+        return lhs.identifier == rhs.identifier
+    }
+    
     var isFaceup = false
     var isMatched = false
-    var identifier: Int
+    private var identifier: Int
     
     private static var identifierFactory = 0
     
