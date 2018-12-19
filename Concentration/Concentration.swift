@@ -10,6 +10,7 @@ import Foundation
 
 struct Concentration {
     private(set) var cards = [Card]()
+    private var shuffled = [Card]()
     
     private var indexOfOnlyFaceUpCard: Int? {
         get {
@@ -29,6 +30,7 @@ struct Concentration {
             cards += [card, card]
         }
         // shuffle model
+        shuffleCards(deckOfCards: &cards)
     }
     
     mutating func chooseCard(at index: Int) {
@@ -37,7 +39,7 @@ struct Concentration {
         
         if !cards[index].isMatched {
             if let matchIndex = indexOfOnlyFaceUpCard, matchIndex != index {
-                // check if cards match
+                // check if cards match in the game's card array
                 if cards[matchIndex] == cards[index] {
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
@@ -50,10 +52,24 @@ struct Concentration {
         }
     }
     
-    private func shuffleCards(deckOfCards: [Card]){
-        
+    private func shuffleCards(deckOfCards: inout [Card]){
+        deckOfCards.shuffle()
     }
-    
+}
+
+extension MutableCollection {
+    /// Shuffles the contents of this collection.
+    mutating func shuffle() {
+        let c = count
+        guard c > 1 else { return }
+        
+        for (firstUnshuffled, unshuffledCount) in zip(indices, stride(from: c, to: 1, by: -1)) {
+            // Change `Int` in the next line to `IndexDistance` in < Swift 4.1
+            let d: Int = numericCast(arc4random_uniform(numericCast(unshuffledCount)))
+            let i = index(firstUnshuffled, offsetBy: d)
+            swapAt(firstUnshuffled, i)
+        }
+    }
 }
 
 extension Collection {
