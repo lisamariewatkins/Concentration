@@ -14,9 +14,11 @@ struct Concentration {
     
     private var indexOfOnlyFaceUpCard: Int? {
         get {
+            // look at all cards and find one that is face up or return nil
             return cards.indices.filter { cards[$0].isFaceup}.oneAndOnly
         }
         set {
+            // turn all cards face down except card at newValue
             for index in cards.indices {
                 cards[index].isFaceup = (index == newValue)
             }
@@ -54,21 +56,6 @@ struct Concentration {
     
     private func shuffleCards(deckOfCards: inout [Card]){
         deckOfCards.shuffle()
-    }
-}
-
-extension MutableCollection {
-    /// Shuffles the contents of this collection.
-    mutating func shuffle() {
-        let c = count
-        guard c > 1 else { return }
-        
-        for (firstUnshuffled, unshuffledCount) in zip(indices, stride(from: c, to: 1, by: -1)) {
-            // Change `Int` in the next line to `IndexDistance` in < Swift 4.1
-            let d: Int = numericCast(arc4random_uniform(numericCast(unshuffledCount)))
-            let i = index(firstUnshuffled, offsetBy: d)
-            swapAt(firstUnshuffled, i)
-        }
     }
 }
 

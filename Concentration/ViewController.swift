@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     private(set) var flipCount = 0 {
         // runs everytime flipCount changes
         didSet {
-            flipCountLabel.text = "Flips: \(flipCount)"
+            updateFlipCountLabel()
         }
     }
     
@@ -30,7 +30,11 @@ class ViewController: UIViewController {
     
     @IBOutlet private var cardButtons: [UIButton]!
 
-    @IBOutlet private weak var flipCountLabel: UILabel!
+    @IBOutlet private weak var flipCountLabel: UILabel! {
+        didSet {
+            updateFlipCountLabel()
+        }
+    }
     
     @IBAction private func touchCard(_ sender: UIButton) {
         flipCount += 1
@@ -41,6 +45,15 @@ class ViewController: UIViewController {
         } else {
             print("card not found")
         }
+    }
+    
+    private func updateFlipCountLabel() {
+        let attributes: [NSAttributedStringKey:Any] = [
+            .strokeWidth : 5.0,
+            .strokeColor : #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 1)
+        ]
+        let attributedString = NSAttributedString(string: "Flips: \(flipCount)", attributes: attributes)
+        flipCountLabel.attributedText = attributedString
     }
     
     private func updateViewFromModel() {
