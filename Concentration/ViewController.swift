@@ -24,8 +24,6 @@ class ViewController: UIViewController {
         }
     }
     
-    private var emojiChoices = ["👻", "🎃", "🤠", "😻", "👽", "☠️", "🐳", "🐣"]
-    
     private var emoji = [Card:String]()
     
     @IBOutlet private var cardButtons: [UIButton]!
@@ -45,6 +43,13 @@ class ViewController: UIViewController {
         } else {
             print("card not found")
         }
+    }
+    
+    @IBAction func newGame(_ sender: UIButton) {
+        flipCount = 0
+        game.reset(numberOfPairsOfCards: numberofPairsOfCards)
+        emoji = [Card:String]()
+        updateViewFromModel()
     }
     
     private func updateFlipCountLabel() {
@@ -71,8 +76,8 @@ class ViewController: UIViewController {
     }
     
     private func emoji(for card: Card) -> String {
-        if emoji[card] == nil, emojiChoices.count > 0 {
-            emoji[card] = emojiChoices.remove(at: emojiChoices.count.arc4random)
+        if emoji[card] == nil, game.emojiChoices.count > 0 {
+            emoji[card] = game.emojiChoices.remove(at: game.emojiChoices.count.arc4random)
         }
         return emoji[card] ?? "?"
     }

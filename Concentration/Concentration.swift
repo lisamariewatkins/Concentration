@@ -10,7 +10,7 @@ import Foundation
 
 struct Concentration {
     private(set) var cards = [Card]()
-    private var shuffled = [Card]()
+    var emojiChoices = [String]()
     
     private var indexOfOnlyFaceUpCard: Int? {
         get {
@@ -26,13 +26,7 @@ struct Concentration {
     }
     
     init(numberOfPairsOfCards: Int) {
-        assert(numberOfPairsOfCards > 0, "Concentration.init(\(numberOfPairsOfCards) < 0")
-        for _ in 1...numberOfPairsOfCards {
-            let card = Card()
-            cards += [card, card]
-        }
-        // shuffle model
-        shuffleCards(deckOfCards: &cards)
+        reset(numberOfPairsOfCards: numberOfPairsOfCards)
     }
     
     mutating func chooseCard(at index: Int) {
@@ -52,6 +46,21 @@ struct Concentration {
                 indexOfOnlyFaceUpCard = index
             }
         }
+    }
+    
+    mutating func reset(numberOfPairsOfCards: Int) {
+        assert(numberOfPairsOfCards > 0, "Concentration.init(\(numberOfPairsOfCards) < 0")
+        // remove existing data
+        emojiChoices.removeAll()
+        cards.removeAll()
+        for _ in 1...numberOfPairsOfCards {
+            let card = Card()
+            cards += [card, card]
+        }
+        // shuffle model
+        shuffleCards(deckOfCards: &cards)
+        // add emoji choices
+        emojiChoices = ["👻", "🎃", "🤠", "😻", "👽", "☠️", "🐳", "🐣"]
     }
     
     private func shuffleCards(deckOfCards: inout [Card]){
