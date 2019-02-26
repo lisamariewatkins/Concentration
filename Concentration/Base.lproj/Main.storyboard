@@ -191,15 +191,23 @@
                                     <action selector="newGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0ea-5g-U3P"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X4v-zL-uGh" userLabel="Score Label">
+                                <rect key="frame" x="135.66666666666669" y="673" width="142.66666666666669" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                <color key="textColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="yIg-7c-MWd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MIk-Ir-en0"/>
+                            <constraint firstItem="X4v-zL-uGh" firstAttribute="top" secondItem="kCd-d3-pYs" secondAttribute="bottom" constant="315.33333333333326" id="Yq7-Ri-h5S"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="UyN-4x-9vK" secondAttribute="trailing" constant="16" id="cjF-Rv-qL6"/>
+                            <constraint firstItem="EMA-zN-2KV" firstAttribute="top" secondItem="X4v-zL-uGh" secondAttribute="bottom" constant="8" id="d3T-PJ-WRa"/>
                             <constraint firstItem="EMA-zN-2KV" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="erB-Ap-Q8N"/>
-                            <constraint firstItem="EMA-zN-2KV" firstAttribute="top" relation="greaterThanOrEqual" secondItem="UyN-4x-9vK" secondAttribute="bottom" constant="8" symbolic="YES" id="fOe-Bt-Agn"/>
                             <constraint firstItem="UyN-4x-9vK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="jTq-mS-njz"/>
                             <constraint firstItem="yIg-7c-MWd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="kUC-2D-Mxt"/>
+                            <constraint firstItem="X4v-zL-uGh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lNd-VH-Cfk"/>
                             <constraint firstItem="UyN-4x-9vK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="olP-gS-u8Q"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="yIg-7c-MWd" secondAttribute="bottom" constant="35" id="pPN-ev-4xq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yIg-7c-MWd" secondAttribute="trailing" constant="40" id="sXK-Gp-7vN"/>
@@ -209,6 +217,7 @@
                     </view>
                     <connections>
                         <outlet property="flipCountLabel" destination="EMA-zN-2KV" id="nOQ-qP-7Hq"/>
+                        <outlet property="scoreLabel" destination="X4v-zL-uGh" id="g55-gf-RSx"/>
                         <outletCollection property="cardButtons" destination="L4d-LD-Z8C" collectionClass="NSMutableArray" id="H6C-vu-nKv"/>
                         <outletCollection property="cardButtons" destination="eoS-4r-PMW" collectionClass="NSMutableArray" id="Wi3-uk-3R6"/>
                         <outletCollection property="cardButtons" destination="jA3-XW-fpl" collectionClass="NSMutableArray" id="PMA-tp-ykb"/>

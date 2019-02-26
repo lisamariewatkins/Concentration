@@ -11,6 +11,8 @@ import Foundation
 struct Concentration {
     private(set) var cards = [Card]()
     var emojiChoices = [String]()
+    var score = 0
+    var flipCount = 0
     
     private var indexOfOnlyFaceUpCard: Int? {
         get {
@@ -39,12 +41,19 @@ struct Concentration {
                 if cards[matchIndex] == cards[index] {
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
+                    // increment score by 2 for matches
+                    score += 2
+                } else {
+                    // decrement score by 1 if they don't match
+                    score -= 1
                 }
                 cards[index].isFaceup = true
             } else {
                 // either no cards or two cards are face up
                 indexOfOnlyFaceUpCard = index
             }
+            // increment flip count
+            flipCount += 1
         }
     }
     
@@ -59,8 +68,15 @@ struct Concentration {
         }
         // shuffle model
         shuffleCards(deckOfCards: &cards)
-        // add emoji choices
-        emojiChoices = ["👻", "🎃", "🤠", "😻", "👽", "☠️", "🐳", "🐣"]
+        // add theme emoji choices
+        emojiChoices = Themes.emojis[selectRandomTheme()]!
+        // reset score and flip count
+        score = 0
+        flipCount = 0
+    }
+    
+    private mutating func selectRandomTheme() -> String {
+        return Themes.keys[Themes.keys.count.arc4random]
     }
     
     private func shuffleCards(deckOfCards: inout [Card]){

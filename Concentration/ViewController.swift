@@ -8,6 +8,11 @@
 
 import UIKit
 
+private struct UIConstants {
+    static let flipCountLabelText = "Flip Count: "
+    static let scoreLabelText = "Score: "
+}
+
 class ViewController: UIViewController {
     // won't initialize til something tries to use game (lazy)
     private lazy var game: Concentration =
@@ -17,25 +22,23 @@ class ViewController: UIViewController {
         return (cardButtons.count) / 2
     }
     
-    private(set) var flipCount = 0 {
-        // runs everytime flipCount changes
-        didSet {
-            updateFlipCountLabel()
-        }
-    }
-    
     private var emoji = [Card:String]()
     
     @IBOutlet private var cardButtons: [UIButton]!
 
     @IBOutlet private weak var flipCountLabel: UILabel! {
         didSet {
-            updateFlipCountLabel()
+            updateLabel(labelText: UIConstants.flipCountLabelText, value: 0, label: flipCountLabel)
+        }
+    }
+    
+    @IBOutlet weak var scoreLabel: UILabel! {
+        didSet {
+            updateLabel(labelText: UIConstants.scoreLabelText, value: 0, label: scoreLabel)
         }
     }
     
     @IBAction private func touchCard(_ sender: UIButton) {
-        flipCount += 1
         // if optional is in set state...
         if let cardNumber = cardButtons.index(of: sender) {
             game.chooseCard(at: cardNumber)
@@ -46,19 +49,18 @@ class ViewController: UIViewController {
     }
     
     @IBAction func newGame(_ sender: UIButton) {
-        flipCount = 0
         game.reset(numberOfPairsOfCards: numberofPairsOfCards)
         emoji = [Card:String]()
         updateViewFromModel()
     }
     
-    private func updateFlipCountLabel() {
+    private func updateLabel(labelText: String, value: Int, label: UILabel) {
         let attributes: [NSAttributedStringKey:Any] = [
             .strokeWidth : 5.0,
             .strokeColor : #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 1)
         ]
-        let attributedString = NSAttributedString(string: "Flips: \(flipCount)", attributes: attributes)
-        flipCountLabel.attributedText = attributedString
+        let attributedString = NSAttributedString(string: labelText + String(value), attributes: attributes)
+        label.attributedText = attributedString
     }
     
     private func updateViewFromModel() {
@@ -73,6 +75,10 @@ class ViewController: UIViewController {
                 button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 0) : #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 1)
             }
         }
+        // update score
+        updateLabel(labelText: UIConstants.scoreLabelText, value: game.score, label: scoreLabel)
+        // update flip count
+        updateLabel(labelText: UIConstants.flipCountLabelText, value: game.flipCount, label: flipCountLabel)
     }
     
     private func emoji(for card: Card) -> String {

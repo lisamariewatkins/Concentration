@@ -16,6 +16,7 @@
 		3F3FFEA7204848F3004A981E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F3FFEA5204848F3004A981E /* LaunchScreen.storyboard */; };
 		3F3FFEB2204848F3004A981E /* ConcentrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3FFEB1204848F3004A981E /* ConcentrationTests.swift */; };
 		3F3FFEBD204848F3004A981E /* ConcentrationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3FFEBC204848F3004A981E /* ConcentrationUITests.swift */; };
+		56C2B7EF22242EC400B4E48F /* Themes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C2B7EE22242EC400B4E48F /* Themes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		3F3FFEB8204848F3004A981E /* ConcentrationUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConcentrationUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F3FFEBC204848F3004A981E /* ConcentrationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcentrationUITests.swift; sourceTree = "<group>"; };
 		3F3FFEBE204848F3004A981E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		56C2B7EE22242EC400B4E48F /* Themes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				3F3FFEA3204848F3004A981E /* Assets.xcassets */,
 				3F3FFEA5204848F3004A981E /* LaunchScreen.storyboard */,
 				3F3FFEA8204848F3004A981E /* Info.plist */,
+				56C2B7EE22242EC400B4E48F /* Themes.swift */,
 			);
 			path = Concentration;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				3F3FFE9F204848F3004A981E /* ViewController.swift in Sources */,
 				3F3FFE9D204848F3004A981E /* AppDelegate.swift in Sources */,
 				3F3D04312052FAE600E8E2DA /* Concentration.swift in Sources */,
+				56C2B7EF22242EC400B4E48F /* Themes.swift in Sources */,
 				3F3D04332052FCD100E8E2DA /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
