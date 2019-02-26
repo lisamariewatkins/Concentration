@@ -27,8 +27,8 @@ struct Concentration {
         }
     }
     
-    init(numberOfPairsOfCards: Int) {
-        reset(numberOfPairsOfCards: numberOfPairsOfCards)
+    init(numberOfPairsOfCards: Int, theme: String?) {
+        reset(numberOfPairsOfCards: numberOfPairsOfCards, theme: theme)
     }
     
     mutating func chooseCard(at index: Int) {
@@ -57,7 +57,7 @@ struct Concentration {
         }
     }
     
-    mutating func reset(numberOfPairsOfCards: Int) {
+    mutating func reset(numberOfPairsOfCards: Int, theme: String?) {
         assert(numberOfPairsOfCards > 0, "Concentration.init(\(numberOfPairsOfCards) < 0")
         // remove existing data
         emojiChoices.removeAll()
@@ -69,7 +69,7 @@ struct Concentration {
         // shuffle model
         shuffleCards(deckOfCards: &cards)
         // add theme emoji choices
-        emojiChoices = Themes.emojis[selectRandomTheme()]!
+        emojiChoices = Themes.emojis[theme ?? selectRandomTheme()]!
         // reset score and flip count
         score = 0
         flipCount = 0

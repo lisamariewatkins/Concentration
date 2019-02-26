@@ -13,16 +13,18 @@ private struct UIConstants {
     static let scoreLabelText = "Score: "
 }
 
-class ViewController: UIViewController {
+class ConcentrationViewController: UIViewController {
     // won't initialize til something tries to use game (lazy)
     private lazy var game: Concentration =
-        Concentration(numberOfPairsOfCards: numberofPairsOfCards)
+        Concentration(numberOfPairsOfCards: numberofPairsOfCards, theme: theme)
+    
+     private var emoji = [Card:String]()
     
     var numberofPairsOfCards: Int {
         return (cardButtons.count) / 2
     }
     
-    private var emoji = [Card:String]()
+    var theme: String?
     
     @IBOutlet private var cardButtons: [UIButton]!
 
@@ -49,7 +51,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func newGame(_ sender: UIButton) {
-        game.reset(numberOfPairsOfCards: numberofPairsOfCards)
+        game.reset(numberOfPairsOfCards: numberofPairsOfCards, theme: theme)
         emoji = [Card:String]()
         updateViewFromModel()
     }
@@ -57,7 +59,7 @@ class ViewController: UIViewController {
     private func updateLabel(labelText: String, value: Int, label: UILabel) {
         let attributes: [NSAttributedStringKey:Any] = [
             .strokeWidth : 5.0,
-            .strokeColor : #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 1)
+            .strokeColor : #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
         ]
         let attributedString = NSAttributedString(string: labelText + String(value), attributes: attributes)
         label.attributedText = attributedString
@@ -72,7 +74,7 @@ class ViewController: UIViewController {
                 button.backgroundColor = #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1)
             } else {
                 button.setTitle("", for: UIControlState.normal)
-                button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 0) : #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 1)
+                button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 0) : #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)
             }
         }
         // update score
